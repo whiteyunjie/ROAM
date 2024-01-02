@@ -13,6 +13,7 @@ The first step is to prepare training dataset. The WSI data should be first segm
 
 WSI data and corresponding detailed information (.csv file) shoule be ready.
 The format of digitized whole slide image data should be standard formats (.svs,.tiff etc.) that can be read with openslide (version 3.4.1).
+
 Here is an example of directory for WSI data.
 ```bash
 DATA_DIRECTORY
@@ -24,9 +25,10 @@ DATA_DIRECTORY
 The corresponding information data of WSI (.csv) should include key information such as `slide_id`,`path`,`label`. Here is an example:
 
 |slide_id|path|label|level|
-|--|--|--|
+|-|-|-|-|
 |965c821d05bbec8|/images/202007/965c821d05bbec8.tif|2|x20|
 
+`level` is the magnification level of the slide. More information can be added to facilitate the process of the data. We provide an example csv file in ./data_prepare/data_csv/.
 
 
 * WSI segmentation and patching
