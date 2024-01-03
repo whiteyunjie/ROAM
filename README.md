@@ -28,10 +28,44 @@ The corresponding information data of WSI (.csv) should include key information 
 |-|-|-|-|
 |965c821d05bbec8|/images/202007/965c821d05bbec8.tif|2|x20|
 
-`level` is the magnification level of the slide. More information can be added to facilitate the process of the data. We provide an example csv file in ./data_prepare/data_csv/.
+`level` is the magnification level of the slide. More information can be added to facilitate the process of the data. We provide an example csv file in `./data_prepare/data_csv/`.
 
 
 * WSI segmentation and patching
+
+The first step is to segment the tissue and crop patches from the tissue region. We referenced CLAM's WSI processing method. CLAM provide a robust WSI segmentation and patching implementation. You can refer to [CLAM](https://github.com/mahmoodlab/CLAM) for more detailed information.
+
+You can segment the tissue region and crop patches by running the following command in `./data_prepare/` directory:
+```shell
+python create_patches_fp.py --source DATA_DIRECTORY --datainfo data_csv/data_info.csv --patch_size 2048 --step_size 2048 --save_dir PATCH_DIRECTORY --patch_level 0
+```
+The description of parameters is listed as follow:
+
+`--source`
+
+The above commond will segment all WSIs in `data_info.csv`, crop patches within the tissue regions with the size of 2048 and generate the following folder structure:
+```bash
+PATCH_DIRECTORY
+      |____ masks
+            |__ slide1.jpg
+            |__ slide2.jpg
+            |__ ...
+      |____ patches
+            |__ slide1.h5
+            |__ slide2.h5
+            |__ ...
+      |____ stitches
+            |__ slide1.jpg
+            |__ slide2.jpg
+            |__ ...
+      |____ process_list_autogen.csv
+```
+The `masks` folder contains the segmentation results (one image per slide).
+The `patches` folder contains arrays of extracted tissue patches from each slide (one .h5 file per slide, where each entry corresponds to the coordinates of the top-left corner of a patch)
+The `stitches` folder contains downsampled visualizations of stitched tissue patches (one image per slide) 
+
+
+
 
 
 ## Training with ROAM
