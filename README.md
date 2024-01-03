@@ -162,8 +162,19 @@ CUDA_VISIBLE_DEVICES=0 sh int_glioma_tumor_subtyping.sh
 
 #### 2.Cascade diagnosis
 
+<img src="./docs/cascade_diagnosis.jpg" width="800px" aligh="center">
+You can also use ROAM for cascode diagnosis. Take glioma diagnosis as an example, all you need to do is running the tasks for glioma detection, glioma subtyping and glioma grading sequentially. `predict_cascade.py` will automatically generate the test set data required for the subsequent tasks based on teh current prediction resutls.
 
-
+Configure file is the same as the configure file in the training section. Here is an example of the script for cascade diagnosis:
+```bash
+cd ..
+python predict_cascade.py configs/int_glioma_cls.ini s1 #for glioma detection
+python predict_cascade.py configs/int_glioma_tumor_subtyping.ini s1 #for glioma subtyping
+python predict_cascade.py configs/int_ast_grade.ini s1 #for astrocytoma grading
+python predict_cascade.py configs/int_oli_grade.ini s1 #for oligodendroglioma grading
+python predict_cascade.py configs/int_epe_grade.ini s1 #for ependymoma grading
+```
+The results will be saved in `./ROAM/prediction_results/` defaultlly.
 
 #### 3.Ablation experiments
 
