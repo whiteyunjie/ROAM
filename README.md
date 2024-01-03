@@ -154,7 +154,7 @@ python main.py configs/int_glioma_tumor_subtyping.ini s2 example2
 The script indicates that we conduct 2 experiments using 2 different splits seed. The split seed refers to the random seed number used for dividing the training and val splits. 
 We conducted five experiments with different split seeds (denoted as s0 to s4) to enhance the robustness and credibility of the experimental results in the paper.
 
-With config file and script file, you can train ROAM models with following commond in `./ROAM/scrits/` directory:
+With config file and script file, you can train ROAM models with following commond in `./ROAM/scripts/` directory:
 
 ```bash
 CUDA_VISIBLE_DEVICES=0 sh int_glioma_tumor_subtyping.sh
@@ -174,10 +174,46 @@ python predict_cascade.py configs/int_ast_grade.ini s1 #for astrocytoma grading
 python predict_cascade.py configs/int_oli_grade.ini s1 #for oligodendroglioma grading
 python predict_cascade.py configs/int_epe_grade.ini s1 #for ependymoma grading
 ```
-The results will be saved in `./ROAM/prediction_results/` defaultlly.
+The results will be saved in `./ROAM/prediction_results/` by default.
+
+Then run the script to generate the complete diagnosis resutls in `./ROAM/scripts/`:
+```bash
+CUDA_VISIBLE_DEVICES=0 sh cascade_pred.sh
+```
 
 #### 3.Ablation experiments
 
+You can also try ablation experiments to validate ROAM's performance in `./ROAM/ablations`. 
 
 ## Visualization
 
+We provide both **slide-level** and **roi-level** visualization methods. 
+
+**slide-level visualization**  
+We generate WSI attention heatmap using attention score of each roi. Config file and visualization results are saved in `./ROAM/visheatmaps/slide_vis`.
+
+Run the following commond to generate slide-level visualization results:
+```python
+python gen_visheatmaps_slide_batch.py config_int_glioma_tumor_subtyping.yaml s1
+```
+
+config file shoule be in `./ROAM/visheatmaps/slide_vis/configs/` and 's1' is split seed.
+
+**roi-level visualization**  
+ROI-level visualization is performed through calculate gradients of patch tokens in the self-attention matrix. For more detailed information you can refer to [Transformer-Explainability](https://github.com/hila-chefer/Transformer-Explainability) and [vision-transformer-explainability](https://github.com/jacobgil/vit-explain). Config file and visualization results are saved in `./ROAM/visheatmaps/roi_vis`.
+
+
+Run the following commond to generate roi-level visualization resutls:
+```python
+python gen_visheatmaps_roi_batch.py visheatmaps/roi_vis/configs/int_glioma_tumor_subtyping_vis_roi.ini s1
+```
+
+## Model checkpoint
+For reproducability, we provide 5 trained models with 5 different split seeds for glioma subtyping task. 
+
+Model checkpoints: [model_ckpt](https://drive.google.com/drive/folders/1fi_OWsR9jlmFgx2uBdPOO5vwsHAy4WH8?usp=drive_link)
+
+## Visualization examples
+Here are some examples of visualization results.
+
+<img src="./docs/visualization_examples.png" width="800px" aligh="center">
