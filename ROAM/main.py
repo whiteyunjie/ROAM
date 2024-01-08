@@ -16,7 +16,7 @@ from tqdm import tqdm
 import pytorch_warmup as warmup
 ## internal imports
 from dataset.roidataset import Wsi_Dataset_sb, Wsi_Dataset_mb
-from models.PTMIL import PTMIL
+from models.ROAM import ROAM
 from compute_metric import compute_metric_results
 from parse_config import parse_args
 
@@ -254,7 +254,7 @@ if __name__ == "__main__":
         print(f'split: {k}')
         seed_torch(args.seed)
 
-        model = PTMIL(choose_num = args.topk,
+        model = ROAM(choose_num = args.topk,
                 num_patches = 84,
                 patch_dim=patch_dim,
                 num_classes=task_info[args.task]['n_classes'],

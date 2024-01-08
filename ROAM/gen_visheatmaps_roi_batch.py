@@ -14,7 +14,7 @@ import matplotlib.pyplot as plt
 
 from vis_utils.vit_rollout import VITAttentionRollout
 from vis_utils.vit_grad_rollout import VITAttentionGradRollout
-from models.PTMIL import PTMIL_VIS
+from models.ROAM import ROAM_VIS
 from models_embed.extractor import resnet50
 import models_embed.ResNet as ResNet
 from models_embed.ccl import CCL
@@ -158,10 +158,10 @@ if __name__ == '__main__':
     else:
         embed_weights = [args.embed_weightx5,args.embed_weightx10,args.embed_weightx20]
         print('set weights:', embed_weights)
-    ## main model PTMil
-    print('load main model PTMil')
+    ## main model ROAM
+    print('load main model ROAM')
 
-    model = PTMIL_VIS(choose_num = args.topk,
+    model = ROAM_VIS(choose_num = args.topk,
                 num_patches = 84,
                 patch_dim=patch_dim,
                 num_classes=task_info[args.task]['n_classes'],
@@ -224,7 +224,7 @@ if __name__ == '__main__':
             input = img_batch.cuda()
             for k in range(5):
                 print(f'split{k}')
-                model_path = os.path.join(f'results/{args.task}/{args.exp_code}/{args.split_seed}',f'PTMil_split{k}.pth')
+                model_path = os.path.join(f'results/{args.task}/{args.exp_code}/{args.split_seed}',f'ROAM_split{k}.pth')
                 #print('model_path:',model_path)
                 model.load_state_dict(torch.load(model_path))
                 model.eval()

@@ -16,7 +16,7 @@ import random
 from tqdm import tqdm
 
 from dataset.roidataset import Wsi_Dataset_pred
-from models.PTMIL import PTMIL
+from models.ROAM import ROAM
 from parse_config import parse_args
 
 os.environ["CUDA_DEVICE_ORDER"] = 'PCI_BUS_ID'
@@ -217,7 +217,7 @@ if __name__ == "__main__":
         seed_torch(args.seed)
 
         # model
-        model = PTMIL(choose_num = args.topk,
+        model = ROAM(choose_num = args.topk,
                 num_patches = 84,
                 patch_dim=patch_dim,
                 num_classes=task_info[args.task]['n_classes'],

@@ -17,7 +17,7 @@ from models_embed.ccl import CCL
 from models_embed.ctran import ctranspath
 from models_embed.simclr_ciga import simclr_ciga_model
 ## models for testing
-from models.PTMIL import PTMIL_VIS
+from models.ROAM import ROAM_VIS
 from dataset.vis_dataset import Wsi_Region
 
 
@@ -263,7 +263,7 @@ if __name__ == '__main__':
 	print(model_args.embed_weightx5)
 	seed_torch(model_args.seed)
 
-	model = PTMIL_VIS(choose_num=model_args.topk,
+	model = ROAM_VIS(choose_num=model_args.topk,
                 num_patches=84,
                 patch_dim=patch_dim,
                 num_classes=task_info[model_args.task]['n_classes'],
@@ -455,7 +455,7 @@ if __name__ == '__main__':
 		probs_all = []
 		for k in range(5):
 			print(f'load {k}-th model weights')
-			model_path = os.path.join(model_args.results_dir,f'PTMil_split{str(k)}.pth')
+			model_path = os.path.join(model_args.results_dir,f'ROAM_split{str(k)}.pth')
 			model.load_state_dict(torch.load(model_path))
 			model.eval()
 			attentions,probs = infer_single_slide(model, feature_h5_path)
@@ -479,7 +479,7 @@ if __name__ == '__main__':
 		probs_all = []
 		for k in range(5):
 			print(f'load {k}-th model weights')
-			model_path = os.path.join(model_args.results_dir,f'PTMil_split{str(k)}.pth')
+			model_path = os.path.join(model_args.results_dir,f'ROAM_split{str(k)}.pth')
 			model.load_state_dict(torch.load(model_path))
 			model.eval()
 			attentions,probs = infer_single_slide(model, feature_h5_path_overlap, num_rois)

@@ -51,7 +51,7 @@ def parse_args(config_dir, split_seed):
     args.attn_dropout = cf.getfloat(task, 'attn_dropout')
     args.dropout = cf.getfloat(task, 'dropout')
 
-    #### PTMIL specific options
+    #### ROAM specific options
     # name of the model
     args.model_type = cf.get(task, 'model_type')
     args.roi_dropout = cf.getboolean(task, 'roi_dropout')
@@ -144,7 +144,7 @@ def parse_args_heatmap_roi(config_dir, split_seed):
 
     args.batch_size = cf.getint(task, 'batch_size')
     
-    #### PTMIL specific options
+    #### ROAM specific options
     args.model_type = cf.get(task, 'model_type')
     args.roi_dropout = cf.getboolean(task, 'roi_dropout')
     args.roi_supervise = cf.getboolean(task, 'roi_supervise')
