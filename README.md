@@ -6,6 +6,20 @@ A weakly supervised computational pathology method for clinical-grade auxiliary 
 # Pre-requisites:
 Python (3.8.13), h5py (3.6.0), openslide (version 3.4.1), opencv (version 4.5.5), pillow (version 6.2.1), Pytorch (version 1.12.1), scikit-learn (version 1.0.2), matplotlib (version 3.5.2) and seaborn (version 0.11.2).
 
+
+# Installation guide
+We recommend that you use anaconda to configure ROAM’s dependency environment. You can refer to https://www.anaconda.com/distribution/ to download and install the anaconda corresponding to the python version you are using.
+
+Use the environment configuration file located in `./docs/environment.yaml` to create a conda environment:
+```shell
+conda env create -n roam -f docs/environments.yaml
+```
+Activate the roam environment to run the training code:
+```shell
+conda acivate roam
+```
+
+
 # Instructions
 We provide the complete process of using ROAM. You can modify related config files and parameters to train ROAM with your own dataset.
 ## Data prepare 
