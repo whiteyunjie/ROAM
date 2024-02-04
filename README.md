@@ -18,7 +18,11 @@ Activate the roam environment to run the training code:
 ```shell
 conda acivate roam
 ```
-
+If an error occurs when importing h5py, you can try uninstalling and then reinstalling the package.
+```shell
+pip uninstall h5py
+pip install --no-cache-dir h5py
+```
 
 # Instructions
 We provide the complete process of using ROAM. You can modify related config files and parameters to train ROAM with your own dataset.
