@@ -26,6 +26,7 @@ pip install --no-cache-dir h5py
 
 # Instructions
 We provide the complete process of using ROAM. You can modify related config files and parameters to train ROAM with your own dataset.
+We provide slide example and trained models for reproducibility. The detailed information can be found in [slide examples](#slide-examples) and [trained checkpoints](#model-checkpoint).
 ## Data prepare 
 The first step is to prepare training dataset. The WSI data should be first segmented to several patches (ROI in ROAM, size is $2048\times2048$). Patches are then cropped from each ROI and put into pre-trained model to extract features. All the features of patches within a WSI form a bag for training.
 
@@ -225,6 +226,16 @@ Run the following commond to generate roi-level visualization resutls:
 ```python
 python gen_visheatmaps_roi_batch.py visheatmaps/roi_vis/configs/int_glioma_tumor_subtyping_vis_roi.ini s1
 ```
+
+## slide examples
+For reproducability, we provide a oligodendroglioma slide example and its corresponding feature extracted from ImageNet pretrained ResNet50.
+The slide and feature can be downloaded from: [slide examples](https://drive.google.com/drive/folders/1u1_B7WkRAxIW38WmPq9hZ_tN3pxKnSVP?usp=drive_link)
+
+With its corresponding test split: 
+      `./data_prepare/data_split/xiangya_split_subtype/example_test_split.npy`
+data infomation:
+      `./data_prepare/data_csv/example_xiangya_data_info_pro.csv`
+and configure, script file, you can test the ROAM model with the example slide.
 
 ## Model checkpoint
 For reproducability, we provide 5 trained models with 5 different split seeds for glioma subtyping task. 
