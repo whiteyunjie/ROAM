@@ -216,6 +216,7 @@ if __name__ == "__main__":
         test_ids,test_labels = np.load(task_info[args.task]['test_split_dir'])
         test_labels = test_labels.astype(np.int16)
         data_dir = f'{args.data_root_dir}/{args.test_dataset}/feats_{args.roi_level}/feats_{args.embed_type}_norm'
+        print(test_ids)
         test_dataset = Wsi_Dataset_sb(slide_ids = test_ids, label_ids= test_labels,
                                     csv_path = task_info[args.task]['csv_path'],
                                     data_dir = data_dir,
@@ -237,8 +238,9 @@ if __name__ == "__main__":
     weights_cls = task_info[args.task]['cls_weights']
     weights_cls = np.sum(weights_cls)/weights_cls
 
-    data_split = np.load(task_info[args.task]['split_dir'],allow_pickle=True)
-    num_folds = data_split.shape[0]
+    if args.stage == 'train':
+        data_split = np.load(task_info[args.task]['split_dir'],allow_pickle=True)
+    num_folds = 5
     results = {k: {} for k in range(num_folds)}
     probs_all = []
 
@@ -398,6 +400,7 @@ if __name__ == "__main__":
             results[k]['best'] = []
 
         model_path = os.path.join(args.results_dir,f'{args.model_type}_split{str(k)}.pth')
+        print(model_path)
         assert os.path.exists(model_path), 'No trained model checkpoint!'
         model.load_state_dict(torch.load(model_path))
         
@@ -436,6 +439,8 @@ if __name__ == "__main__":
             f.write('{}\n'.format(str(results[k]['best'])))
 
     # compute complete metrics
-    compute_metric_results(args,args.task)
+    if len(test_dataset) > 1:
+        # for batch testing
+        compute_metric_results(args,args.task)
 
     

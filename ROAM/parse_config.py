@@ -103,11 +103,11 @@ def parse_args(config_dir, split_seed):
                           'test_split_dir': '../data_prepare/data_split/xiangya_split_detection/test_split_label_detection.npy',
                           'cls_weights':[50,24,514]},
 
-        'int_glioma_tumor_subtyping':{'csv_path': '../data_prepare/data_csv/xiangya_data_info_pro.csv',
+        'int_glioma_tumor_subtyping':{'csv_path': '../data_prepare/data_csv/example_xiangya_data_info_pro.csv',
                                       'label_dict': {i+2:i for i in range(3)},
                                       'n_classes': 3,
                                       'split_dir': f'../data_prepare/data_split/xiangya_split_subtype/xiangya_split_subtype_size{args.sample_size}_{split_seed}.npy',
-                                      'test_split_dir': '../data_prepare/data_split/xiangya_split_subtype/test_split_label_subtype.npy',
+                                      'test_split_dir': '../data_prepare/data_split/xiangya_split_subtype/example_test_split.npy',
                                       'cls_weights':[281,119,111]},
         # external validation with TCGA test dataset
         'ext_glioma_tumor_subtyping3':{'csv_path':'../data_prepare/data_csv/tcga_data_info_pro.csv',
@@ -198,11 +198,11 @@ def parse_args_heatmap_roi(config_dir, split_seed):
                           'test_split_dir': '../data_prepare/data_split/xiangya_split_detection/test_split_label_detection.npy',
                           'cls_weights':[50,24,514]},
 
-        'int_glioma_tumor_subtyping':{'csv_path': '../data_prepare/data_csv/xiangya_data_info_pro.csv',
+        'int_glioma_tumor_subtyping':{'csv_path': '../data_prepare/data_csv/example_xiangya_data_info_pro.csv',
                                       'label_dict': {i+2:i for i in range(3)},
                                       'n_classes': 3,
                                       'split_dir': f'../data_prepare/data_split/xiangya_split_subtype/xiangya_split_subtype_size100_{split_seed}.npy',
-                                      'test_split_dir': '../data_prepare/data_split/xiangya_split_subtype/test_split_label_subtype.npy',
+                                      'test_split_dir': '../data_prepare/data_split/xiangya_split_subtype/example_test_split.npy',
                                       'cls_weights':[281,119,111]},
         # external validation with TCGA test dataset
         'ext_glioma_tumor_subtyping3':{'csv_path':'../data_prepare/data_csv/tcga_data_info_pro.csv',
