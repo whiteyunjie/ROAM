@@ -26,7 +26,7 @@ pip install --no-cache-dir h5py
 
 # Instructions
 We provide the complete process of using ROAM. You can modify related config files and parameters to train ROAM with your own dataset.
-We provide slide example and trained models for reproducibility. The detailed information can be found in [slide examples](#slide-examples) and [trained checkpoints](#model-checkpoint).
+We provide slide example and trained models for reproducibility. The detailed information can be found in [slide examples](#slide-examples) and [model checkpoints](#model-checkpoint).
 ## Data prepare 
 The first step is to prepare training dataset. The WSI data should be first segmented to several patches (ROI in ROAM, size is $2048\times2048$). Patches are then cropped from each ROI and put into pre-trained model to extract features. All the features of patches within a WSI form a bag for training.
 
