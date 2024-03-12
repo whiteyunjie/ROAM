@@ -65,8 +65,7 @@ The description of parameters is listed as follow:
 `--patch_size`: size of patch  
 `--step_size`: step size of patching, "patch_size == step_size" denotes patches are extracted without overlapping  
 `--save_dir`: path to save results  
-`--patch_level`: downsample level at which to crop patches
-
+`--patch_level`: downsample level at which to crop patches  
 `--seg,--stitch,--patch`: Indicate whether to split the slides, whether to concatenate the segmengted patches to observe the segmentation effect, and whether to extract patches.
 
 
