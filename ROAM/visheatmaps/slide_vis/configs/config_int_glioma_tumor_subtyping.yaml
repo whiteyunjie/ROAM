@@ -56,7 +56,7 @@ model_arguments:
 patching_arguments:
   # arguments for patching
   patch_size: 4096
-  overlap: 0.9
+  overlap: 0.5
   patch_level: 0
   custom_downsample: 1
   # for stain normalization
