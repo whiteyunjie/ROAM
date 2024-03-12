@@ -197,7 +197,7 @@ python main.py configs/int_glioma_tumor_subtyping.ini s2 example2
 The script indicates that we conduct 2 experiments using 2 different splits seed. The split seed refers to the random seed number used for dividing the training and val splits. 
 We conducted five experiments with different split seeds (denoted as s0 to s4) to enhance the robustness and credibility of the experimental results in the paper.
 
-**training**
+**training**  
 With config file and script file, you can train ROAM models with following commond in `./ROAM/scripts/` directory:
 
 ```bash
@@ -205,7 +205,7 @@ CUDA_VISIBLE_DEVICES=0 sh int_glioma_tumor_subtyping.sh
 ```
 
 
-**test**
+**test**  
 You can also test the model performance with following commond:
 ```bash
 CUDA_VISIBLE_DEVICES=0 sh int_glioma_tumor_subtyping_test.sh
