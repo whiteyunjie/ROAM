@@ -152,7 +152,7 @@ We provide examples of splits in `./data_prepare/data_split`
 
 ## Training ROAM models
 
-#### 1.training
+#### 1.training and test
 With features data and splits, you can start training your own ROAM models.
 
 You should first prepare **config file** and **script file**. You can easily modify the parameters in **config files** and then list training commond in **script file**. Run the script file to train ROAM models. It can effectively standardizes the code training, avoiding the need to input lengthy training commands.
@@ -197,10 +197,18 @@ python main.py configs/int_glioma_tumor_subtyping.ini s2 example2
 The script indicates that we conduct 2 experiments using 2 different splits seed. The split seed refers to the random seed number used for dividing the training and val splits. 
 We conducted five experiments with different split seeds (denoted as s0 to s4) to enhance the robustness and credibility of the experimental results in the paper.
 
+**training**
 With config file and script file, you can train ROAM models with following commond in `./ROAM/scripts/` directory:
 
 ```bash
 CUDA_VISIBLE_DEVICES=0 sh int_glioma_tumor_subtyping.sh
+```
+
+
+**test**
+You can also test the model performance with following commond:
+```bash
+CUDA_VISIBLE_DEVICES=0 sh int_glioma_tumor_subtyping_test.sh
 ```
 
 #### 2.Cascade diagnosis
