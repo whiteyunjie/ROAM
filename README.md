@@ -66,6 +66,7 @@ The description of parameters is listed as follow:
 `--step_size`: step size of patching, "patch_size == step_size" denotes patches are extracted without overlapping  
 `--save_dir`: path to save results  
 `--patch_level`: downsample level at which to crop patches
+
 `--seg,--stitch,--patch`: Indicate whether to split the slides, whether to concatenate the segmengted patches to observe the segmentation effect, and whether to extract patches.
 
 
@@ -262,4 +263,4 @@ Here are some examples of visualization results.
 
 2.Add another 2 dependencies: spams(version 2.6.5.4) and torchsummary(version 1.5.1).
 
-3. Update the command of WSI segmentation and patching.
+3.Update the command of WSI segmentation and patching.
