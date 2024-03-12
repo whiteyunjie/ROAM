@@ -112,7 +112,7 @@ FEAT_DIRECTORY
 ```
 Each .h5 file contains an array of extracted features and corresponding coordinates. Features shape of each ROI is $84\times d$. 84 represents each ROI with size of 2048 can be cropped into 84 patches with size of 256 and $d$ denotes feature dimension, which depends on the pre-trained model.
 
-We provide some model codes that may be needed for feature extraction in ``data_prepare/models/`, including "ImageNet","RetCCL","simclr-ciga", etc. The corresponding checkpoint files can be downloader from 
+We provide some model codes that may be needed for feature extraction in ``data_prepare/models/`, including "ImageNet","RetCCL","simclr-ciga", etc. The corresponding checkpoint files can be downloader from [pretrained model weights](https://drive.google.com/drive/folders/1afjdbW31QCq5HjV7oe7AdcMAHAav_AdO?usp=drive_link)
 
 
 #### 3.Generate splits
