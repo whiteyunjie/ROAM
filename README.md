@@ -128,10 +128,25 @@ The format of splits data is .npy file. The file contains the training and valid
 
 Each fold contains train list, train labels, val list and val labels:
 ```
-([train_slide_id1,train_slide_id2,...,train_slide_idk],[train_label1,train_label2,...,train_labelk],  
-[val_slide_id1,val_slide_id2,...,train_slide_idm],[val_label1,val_label2,...,val_labelm])
+## fold 1
+(
+      [train_slide_id1,train_slide_id2,...,train_slide_idk],
+      [train_label1,train_label2,...,train_labelk],  
+      [val_slide_id1,val_slide_id2,...,train_slide_idm],
+      [val_label1,val_label2,...,val_labelm]
+)
+## fold 2
+...
+
 ```
 
+For test split, the format of split data is:
+```
+np.array([
+      [test_slide_id1,test_slide_id2,...,test_slide_idk],
+      [test_label1,test_label2,...,test_labelk]
+])
+```
 We provide examples of splits in `./data_prepare/data_split`
 
 
@@ -162,8 +177,8 @@ task_info={
             'csv_path': DATA_INFO_DIRECTORY,
             'label_dict': {0:0,1:1,2:2,3:2,4:2}, # map the original labels to the labels required for this task
             'n_classes': 3, # number of classes
-            'split_dir': '../data_prepare/data_split/int_glioma_tumor_subtyping.ini', # training splits
-            'test_split_dir':  '../data_prepare/data_split/int_glioma_tumor_subtyping_test.ini', # test splits
+            'split_dir': '../data_prepare/data_split/int_glioma_tumor_subtyping.npy', # training splits
+            'test_split_dir':  '../data_prepare/data_split/int_glioma_tumor_subtyping_test.npy', # test splits
             'cls_weights': [50,24,514], # the proportion of each class in the training dataset, for class balance when generating dataloader.
       }
 }
