@@ -56,7 +56,7 @@ The first step is to segment the tissue and crop patches from the tissue region.
 
 You can segment the tissue region and crop patches by running the following command in `./data_prepare/` directory:
 ```shell
-python create_patches_fp.py --source DATA_DIRECTORY --datainfo DATA_INFO_DIRECTORY --patch_size 2048 --step_size 2048 --save_dir PATCH_DIRECTORY --patch_level 0
+python create_patches_fp.py --source DATA_DIRECTORY --datainfo DATA_INFO_DIRECTORY --patch_size 4096 --step_size 4096 --save_dir PATCH_DIRECTORY --patch_level 0 --seg --stitch --patch
 ```
 The description of parameters is listed as follow:
 
@@ -65,7 +65,9 @@ The description of parameters is listed as follow:
 `--patch_size`: size of patch  
 `--step_size`: step size of patching, "patch_size == step_size" denotes patches are extracted without overlapping  
 `--save_dir`: path to save results  
-`--patch_level`: downsample level at which to crop patches 
+`--patch_level`: downsample level at which to crop patches
+`--seg,--stitch,--patch`: Indicate whether to split the slides, whether to concatenate the segmengted patches to observe the segmentation effect, and whether to extract patches.
+
 
 The above commond will segment all WSIs in DATA_INFO_DIRECTORY (.csv file), crop patches within the tissue regions with the size of 2048 and generate the following folder structure:
 ```bash
@@ -87,6 +89,9 @@ PATCH_DIRECTORY
 The `masks` folder contains the segmentation results (one image per slide).
 The `patches` folder contains arrays of extracted tissue patches from each slide (one .h5 file per slide, where each entry corresponds to the coordinates of the top-left corner of a patch)
 The `stitches` folder contains downsampled visualizations of stitched tissue patches (one image per slide) 
+
+Please note that the slide example we provide was obtained at a magnification level of 40x. The actual size of the ROI extracted is $4096\times4096$, which corresponds exactly to the size of $2048\times2048$ under 20x magnification of the ROI mentioned in the paper under 20x magnification. This will not affect the subsequent feature extraction process, as we have standardized the ROI size to 2048 during feature extraction, eliminating the need for additional processing.
+
 
 #### 2.Patch feature extraction
   
