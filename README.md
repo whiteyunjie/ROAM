@@ -248,3 +248,8 @@ Model checkpoints: [model_ckpt](https://drive.google.com/drive/folders/1fi_OWsR9
 Here are some examples of visualization results.
 
 <img src="./docs/visualization_examples.png" width="800px" aligh="center">
+
+# Update
+## 2024.03.12
+1.Add the pretrained model codes in `data_prepare/models` and provide the corresponding checkpoints.
+2.Add another 2 dependencies: spams(version 2.6.5.4) and torchsummary(1.5.1)
