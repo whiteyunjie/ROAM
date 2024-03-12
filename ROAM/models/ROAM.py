@@ -4,7 +4,6 @@ import torch.nn.functional as F
 from torch import einsum 
 from einops import rearrange, repeat
 from position_embedding import positionalencoding2d
-from topk.svm import SmoothTop1SVM
 import h5py
 import math
 from timm.models.layers import trunc_normal_
