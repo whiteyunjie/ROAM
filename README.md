@@ -90,7 +90,9 @@ The `masks` folder contains the segmentation results (one image per slide).
 The `patches` folder contains arrays of extracted tissue patches from each slide (one .h5 file per slide, where each entry corresponds to the coordinates of the top-left corner of a patch)
 The `stitches` folder contains downsampled visualizations of stitched tissue patches (one image per slide) 
 
-Please note that the slide example we provide was obtained at a magnification level of 40x. The actual size of the ROI extracted is $4096\times4096$, which corresponds exactly to the size of $2048\times2048$ under 20x magnification of the ROI mentioned in the paper under 20x magnification. This will not affect the subsequent feature extraction process, as we have standardized the ROI size to 2048 during feature extraction, eliminating the need for additional processing.
+Please note that the slide example we provide was obtained at a magnification level of 40x. The actual size of the ROI extracted is $4096\times4096$, which corresponds exactly to the size of $2048\times2048$ under 20x magnification. This will not affect the subsequent feature extraction process, as we have standardized the ROI size to 2048 during feature extraction, eliminating the need for additional processing.
+
+When utilizing your own dataset, remember to guarantee that the size of extracted ROI is $2048\times2048$ at 20x magnification level.
 
 
 #### 2.Patch feature extraction
@@ -259,3 +261,5 @@ Here are some examples of visualization results.
 1.Add the pretrained model codes in `data_prepare/models` and provide the corresponding checkpoints.
 
 2.Add another 2 dependencies: spams(version 2.6.5.4) and torchsummary(version 1.5.1).
+
+3. Update the command of WSI segmentation and patching.
