@@ -253,4 +253,4 @@ Here are some examples of visualization results.
 ## 2024.03.12
 1.Add the pretrained model codes in `data_prepare/models` and provide the corresponding checkpoints.
 
-2.Add another 2 dependencies: spams(version 2.6.5.4) and torchsummary(1.5.1).
+2.Add another 2 dependencies: spams(version 2.6.5.4) and torchsummary(version 1.5.1).
