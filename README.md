@@ -94,7 +94,7 @@ For each ROI (patch with size of $2048\times2048$), you need extract features of
 
 Run the following commond in `./data_prepare/` directory for feature extraction:
 ```bash
-python extract_feature_patch.py --data_h5_dir PATCH_DIRECTORY --data_slide_dir DATA_DIRECTORY --csv_path DATA_INFO_DIRECTORY --feat_dir FEAT_DIRECTORY --pretrained_model ImageNet --stain_norm
+python extract_feature_patch.py --data_h5_dir PATCH_DIRECTORY --data_slide_dir DATA_DIRECTORY --csv_path DATA_INFO_DIRECTORY --feat_dir FEAT_DIRECTORY --pretrained_model ImageNet --is_stain_norm
 ```
 
 Parameters:  
