@@ -337,5 +337,6 @@ Here are some examples of visualization results.
 ## 2024.3.13
 1. Add a description for the saving path of the training results in **training and test** section.
 2. Fix a bug where the feature paths during model prediction is inconsistent with the previously generated paths.
+3. Fix a potential bug in "predict_cascade.py" during prediction.
 
 
