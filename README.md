@@ -205,6 +205,9 @@ CUDA_VISIBLE_DEVICES=0 sh int_glioma_tumor_subtyping.sh
 ```
 
 
+
+
+
 **test**  
 You can also test the model performance with following commond:
 ```bash
