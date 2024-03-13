@@ -224,7 +224,7 @@ if __name__ == "__main__":
         test_loader = DataLoader(test_dataset,batch_size=1,shuffle=False,num_workers=4)
     if args.test_dataset == 'TCGA':
         test_ids,test_labels = np.load(task_info[args.task]['test_split_dir_ext'])
-        data_dir = f'{args.data_root_dir}/test/feats_{args.embed_type}_norm' # for external test dataset, the directory may be different
+        data_dir = f'{args.data_root_dir}/test/feats_{args.embed_type}_norm' # for external test dataset, the root path may be different
         test_dataset = Wsi_Dataset_sb(slide_ids = test_ids, label_ids= test_labels,
                                     csv_path = task_info[args.task]['csv_path'],
                                     data_dir = data_dir,
