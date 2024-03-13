@@ -303,10 +303,11 @@ if __name__ == '__main__':
 
 		## WSI path
 		slide_cur_path = process_stack.loc[i, 'path']
-		if model_args.test_dataset == 'xiangya':
-			slide_path = '/data/glioma_data/iapsfile' + slide_cur_path
-		else:
-			slide_path = slide_cur_path
+		# if model_args.test_dataset == 'xiangya':
+		# 	slide_path = '/data/glioma_data/iapsfile' + slide_cur_path
+		# else:
+		# 	slide_path = slide_cur_path
+		slide_path = slide_cur_path
 		label = process_stack.loc[i, 'label']
 
 
