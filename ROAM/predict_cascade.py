@@ -192,7 +192,7 @@ if __name__ == "__main__":
     test_ids = test_info[0] if len(test_info)==2 else test_info
 
 
-    data_dir = f'{args.data_root_dir}/{args.test_dataset}/feats_{args.roi_level}/feats_{args.embed_type}_norm'
+    data_dir = f'{args.data_root_dir}/feats_{args.embed_type}_norm'
     if args.test_dataset == 'xiangya':
         test_dataset = Wsi_Dataset_pred(slide_ids=test_ids,
                                         csv_path=task_info[args.task]['csv_path'],
