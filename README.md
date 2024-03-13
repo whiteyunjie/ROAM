@@ -296,6 +296,9 @@ python gen_visheatmaps_slide_batch.py config_int_glioma_tumor_subtyping.yaml s1
 
 config file should be in `./ROAM/visheatmaps/slide_vis/configs/` and 's1' is split seed.
 
+Please note that you need to modify the path of the slide image in the `./ROAM/visheatmaps/slide_vis/process_list/int_glioma_tumor_subtyping.csv`, keeping the path consistent with DATA_DIRECYOTY in **WSI segmentation and patching**.
+
+
 **roi-level visualization**  
 ROI-level visualization is performed through calculate gradients of patch tokens in the self-attention matrix. For more detailed information you can refer to [Transformer-Explainability](https://github.com/hila-chefer/Transformer-Explainability) and [vision-transformer-explainability](https://github.com/jacobgil/vit-explain). Config file and visualization results are saved in `./ROAM/visheatmaps/roi_vis`.
 
