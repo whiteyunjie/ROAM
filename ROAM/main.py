@@ -215,7 +215,7 @@ if __name__ == "__main__":
     if args.test_dataset == 'xiangya':
         test_ids,test_labels = np.load(task_info[args.task]['test_split_dir'])
         test_labels = test_labels.astype(np.int16)
-        data_dir = f'{args.data_root_dir}/{args.test_dataset}/feats_{args.roi_level}/feats_{args.embed_type}_norm'
+        data_dir = f'{args.data_root_dir}/feats_{args.embed_type}_norm'
         print(test_ids)
         test_dataset = Wsi_Dataset_sb(slide_ids = test_ids, label_ids= test_labels,
                                     csv_path = task_info[args.task]['csv_path'],
@@ -224,9 +224,9 @@ if __name__ == "__main__":
         test_loader = DataLoader(test_dataset,batch_size=1,shuffle=False,num_workers=4)
     if args.test_dataset == 'TCGA':
         test_ids,test_labels = np.load(task_info[args.task]['test_split_dir_ext'])
-        data_dir = f'{args.data_root_dir}/{args.test_dataset}/feats_{args.roi_level}/feats_{args.embed_type}_norm'
+        data_dir = f'{args.data_root_dir}/test/feats_{args.embed_type}_norm' # for external test dataset, the directory may be different
         test_dataset = Wsi_Dataset_sb(slide_ids = test_ids, label_ids= test_labels,
-                                    csv_path = '../data_prepare/data_csv/tcga_data_info_pro.csv',
+                                    csv_path = task_info[args.task]['csv_path'],
                                     data_dir = data_dir,
                                     label_dict = task_info[args.task]['label_dict_ext'])
         test_loader = DataLoader(test_dataset,batch_size=1,shuffle=False,num_workers=4)
@@ -285,7 +285,7 @@ if __name__ == "__main__":
         if args.stage == 'train':
             train_x,train_y,val_x,val_y = data_split[k]
             
-            data_dir = f'{args.data_root_dir}/xiangya/feats_{args.roi_level}/feats_{args.embed_type}_norm'
+            data_dir = f'{args.data_root_dir}/feats_{args.embed_type}_norm'
 
             train_dataset = Wsi_Dataset_mb(slide_ids = train_x, label_ids=train_y,
                                         csv_path = task_info[args.task]['csv_path'],
