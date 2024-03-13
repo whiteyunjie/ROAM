@@ -21,6 +21,11 @@ from parse_config import parse_args
 
 os.environ["CUDA_DEVICE_ORDER"] = 'PCI_BUS_ID'
 
+cls_name_dict = {
+    'int_glioma_tumor_subtyping':['astrocytoma','oligodendroglioma','ependymoma']
+}
+
+
 def seed_torch(seed=7):
     random.seed(seed)
     os.environ['PYTHONHASHSEED'] = str(seed)
@@ -170,11 +175,17 @@ if __name__ == "__main__":
     default_test_tasks = ['int_glioma_cls','int_idh_cls','int_mgmt_cls']
 
     ## read test slide list file
-    if args.task in default_test_tasks:
-        test_split_dir = task_info[args.task]['test_split_dir'] #xiangya
-    else:
-        # use the results from the previous layer of the cascade system for prediction
-        test_split_dir = os.path.join(f'prediction_results/{args.split_seed}',f'cascade_{args.task}_split.npy')
+    test_split_dir = task_info[args.task]['test_split_dir']
+    if args.task not in default_test_tasks:
+        cascade_test_dir = os.path.join(f'prediction_results/{args.split_seed}',f'cascade_{args.task}_split.npy')
+        if os.path.exists(cascade_test_dir):
+            test_split_dir = cascade_test_dir
+    
+    # if args.task in default_test_tasks:
+    #     test_split_dir = task_info[args.task]['test_split_dir'] #xiangya
+    # else:
+    #     # use the results from the previous layer of the cascade system for prediction
+    #     test_split_dir = os.path.join(f'prediction_results/{args.split_seed}',f'cascade_{args.task}_split.npy')
     
     ## original test slide list file has label, ignore
     test_info = np.load(test_split_dir)
@@ -184,14 +195,14 @@ if __name__ == "__main__":
     data_dir = f'{args.data_root_dir}/{args.test_dataset}/feats_{args.roi_level}/feats_{args.embed_type}_norm'
     if args.test_dataset == 'xiangya':
         test_dataset = Wsi_Dataset_pred(slide_ids=test_ids,
-                                        csv_path='../data_prepare/data_csv/xiangya_data_info_pro.csv',
+                                        csv_path=task_info[args.task]['csv_path'],
                                         data_dir=data_dir)
         test_loader = DataLoader(test_dataset,batch_size=1,shuffle=False,num_workers=4)
     if args.test_dataset == 'TCGA':
         test_ids,test_labels = np.load(task_info[args.task]['test_split_dir_ext'])
         
         test_dataset = Wsi_Dataset_pred(slide_ids = test_ids,
-                                    csv_path = '../data_prepare/data_csv/tcga_data_info_pro.csv',
+                                    csv_path = task_info[args.task]['csv_path'],
                                     data_dir = data_dir,
                                     )
         test_loader = DataLoader(test_dataset,batch_size=1,shuffle=False,num_workers=4)
@@ -267,21 +278,35 @@ if __name__ == "__main__":
     results['test']['preds'] = preds_mean.tolist()
     results['test']['probs'] = probs_mean.tolist()
 
+    final_preds = {}
+    cls_names = cls_name_dict[args.task]
+    print('predict results:')
+    for idx,sid in enumerate(test_ids):
+        final_preds[sid] = cls_names[results['test']['preds'][idx]]
+        print(f'{sid}:{final_preds[sid]}')
 
-
+    pred_res_dir = os.path.join(pred_result_dir,'predictions.json')
+    print(f'save the predictions to {pred_res_dir}')
     with open(os.path.join(pred_result_dir,'predictions.json'),'w') as f:
+        json.dump(final_preds,f)
+
+
+
+    with open(os.path.join(pred_result_dir,'results.json'),'w') as f:
         json.dump(results,f)
     
     ## results split: prepare for next level prediction
     preds_res = np.array(results['test']['preds'])
+    #print('preds_res:',preds_res)
     if args.task == 'int_glioma_cls':
         slide_ids_c = test_ids[preds_res == 2]
         np.save(os.path.join(f'prediction_results/{args.split_seed}','cascade_int_glioma_tumor_subtyping_split.npy'),slide_ids_c)
     elif args.task == 'int_glioma_tumor_subtyping':
         cat_names = ['int_ast_grade1','int_oli_grade','int_epe_grade']    
         for c in range(task_info[args.task]['n_classes']):
-            slide_ids_c = test_ids[preds_res == c]         
-            np.save(os.path.join(f'prediction_results/{args.split_seed}',f'cascade_{cat_names[c]}_split.npy'),slide_ids_c)
+            slide_ids_c = test_ids[preds_res == c]
+            if len(slide_ids_c)>0:     
+                np.save(os.path.join(f'prediction_results/{args.split_seed}',f'cascade_{cat_names[c]}_split.npy'),slide_ids_c)
 
         
 
