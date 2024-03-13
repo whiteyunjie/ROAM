@@ -211,9 +211,45 @@ CUDA_VISIBLE_DEVICES=0 sh int_glioma_tumor_subtyping.sh
 
 **Results saving**
 The code will automatically save the best-performing model and evaluation metrics for each fold during the training process.
-The results will be saved in `{result_dir}/{task}/{exp_code}/{seed}`.
+The results will be saved in `{result_dir}/{task}/{exp_code}/{seed}`.  
+`results_dir` is the root directory to save results.  
+`task` is the task name of the experiment. For example, we provide a example task "int_glioma_tumor_subtyping".  
+'seed' is the random seed of this experiment. These three parameters can be set in the config file. You can refer to `./ROAM/configs/int_glioma_tumor_subtyping.ini`  
+`exp_code` is the code name of this experiment. You can either customize it or use the default name. You can set "exp_code" in training script file. For example, we provide a example script file: `scripts/int_glioma_tumor_subtyping.sh`:
+```bash
+      python main.py configs/int_glioma_tumor_subtyping.ini s1 exp_code #you can remove the exp_code to use the default setting
+```
+The details of default "exp_code" can be found in parse_config.py:
+```python
+args.exp_code = '_'.join(map(str, [args.task, args.depths,
+                                       args.embed_type,
+                                       args.batch_size, args.roi_dropout, 
+                                       args.roi_supervise,
+                                       args.roi_weight, args.topk,
+                                       args.roi_level,
+                                       args.scale_type,args.single_level,
+                                       args.not_interscale]))
+```
 
-
+Here we provide an example folder structure of saved results:
+```bash
+results
+      |____ int_glioma_tumor_subtyping
+            |____ int_glioma_tumor_subtyping_[2, 2, 2, 2, 2]_ImageNet_4_True_True_1.0_4_0_ms_0_False
+                  |____ s1
+                        |____ visual_res
+                              |__ cm_mean.png # confusion matrix on test dataset
+                              |__ normal_cm_mean.png
+                              |__ metrics.json # resutls summary
+                        |____ ROAM_split0.pth #model checkpoints for each fold
+                        |____ ROAM_split1.pth
+                        |____ ROAM_split2.pth
+                        |____ ROAM_split3.pth
+                        |____ ROAM_split4.pth
+                        |____ results.json #complete results, including probs,preds,... of each fold
+```
+If you want to run the testing and visualization code using the example model weights we provide, 
+please download the five model weights and place them according to the folder structure outlined above.
 
 **test**  
 You can also test the model performance with following commond:
