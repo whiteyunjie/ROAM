@@ -214,10 +214,10 @@ The code will automatically save the best-performing model and evaluation metric
 The results will be saved in `{result_dir}/{task}/{exp_code}/{seed}`.  
 `results_dir` is the root directory to save results.  
 `task` is the task name of the experiment. For example, we provide a example task "int_glioma_tumor_subtyping".  
-'seed' is the random seed of this experiment. These three parameters can be set in the config file. You can refer to `./ROAM/configs/int_glioma_tumor_subtyping.ini`  
+`seed` is the random seed of this experiment. These three parameters can be set in the config file. You can refer to `./ROAM/configs/int_glioma_tumor_subtyping.ini`  
 `exp_code` is the code name of this experiment. You can either customize it or use the default name. You can set "exp_code" in training script file. For example, we provide a example script file: `scripts/int_glioma_tumor_subtyping.sh`:
 ```bash
-      python main.py configs/int_glioma_tumor_subtyping.ini s1 exp_code #you can remove the exp_code to use the default setting
+python main.py configs/int_glioma_tumor_subtyping.ini s1 exp_code #you can remove the exp_code to use the default setting
 ```
 The details of default "exp_code" can be found in parse_config.py:
 ```python
