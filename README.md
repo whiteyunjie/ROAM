@@ -211,7 +211,7 @@ CUDA_VISIBLE_DEVICES=0 sh int_glioma_tumor_subtyping.sh
 
 **Results saving**
 The code will automatically save the best-performing model and evaluation metrics for each fold during the training process.
-The results will be saved in `*result_dir*/*task*/*exp_code*/*seed*`.
+The results will be saved in `{result_dir}/{task}/{exp_code}/{seed}`.
 
 
 
