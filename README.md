@@ -147,7 +147,7 @@ np.array([
       [test_label1,test_label2,...,test_labelk]
 ])
 ```
-We provide examples of splits in `./data_prepare/data_split`
+We provide examples of splits in `./data_prepare/data_split/`
 
 
 ## Training ROAM models
@@ -169,6 +169,11 @@ data_root_dir=FEAT_DIRECTORY #directory of features
 results_dir=RESULT_DIRECTORY #directory to save final results
 ...
 ```
+**About 'data_root_dir'**: Please note that codes for model training and feature extraction aren't executed under the same
+ root directory. Feature extraction is in `data_prepare`, and training is in `ROAM`. Therefore, providing the relative path 
+ to the original extracted feature (FEAT_DIRECTORY) would cause an error. You can either use absolute paths or prepend ../data_prepare to the path.  
+ For example, we set `FEAT_DIRECTORY=./example`, then `data_root_dir` should be `../data_prepare/example`.
+
 
 You can define your own task in `./ROAM/parse_config.py`. Here is an example of task in our experiments:
 ```python
