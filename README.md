@@ -165,13 +165,13 @@ seed=1 #initial random seed for traininng
 stage=train #train or test
 embed_type=ImageNet #pre-trained model that features are extracted
 not_stain_norm=False #whether to use stain-noramlized features
-data_root_dir=FEAT_DIRECTORY #directory of features
+data_root_dir=../data_prepare/FEAT_DIRECTORY #directory of features
 results_dir=RESULT_DIRECTORY #directory to save final results
 ...
 ```
 **About 'data_root_dir'**: Please note that codes for model training and feature extraction aren't executed under the same
  root directory. Feature extraction is in `data_prepare`, and training is in `ROAM`. Therefore, providing the relative path 
- to the original extracted feature (FEAT_DIRECTORY) would cause an error. You can either use absolute paths or prepend ../data_prepare to the path.  
+ to the original extracted feature (FEAT_DIRECTORY) would cause an error. You can either use absolute paths or prepend `../data_prepare` to the path.  
  For example, we set `FEAT_DIRECTORY=./example`, then `data_root_dir` should be `../data_prepare/example`.
 
 
@@ -182,8 +182,8 @@ task_info={
             'csv_path': DATA_INFO_DIRECTORY,
             'label_dict': {0:0,1:1,2:2,3:2,4:2}, # map the original labels to the labels required for this task
             'n_classes': 3, # number of classes
-            'split_dir': '../data_prepare/data_split/int_glioma_tumor_subtyping.npy', # training splits
-            'test_split_dir':  '../data_prepare/data_split/int_glioma_tumor_subtyping_test.npy', # test splits
+            'split_dir': '../data_prepare/data_split/xiangya_split_subtype/example_int_glioma_tumor_subtyping.npy', # training splits
+            'test_split_dir':  '../data_prepare/data_split/xiangya_split_subtype/example_test_split.npy', # test splits
             'cls_weights': [50,24,514], # the proportion of each class in the training dataset, for class balance when generating dataloader.
       }
 }
@@ -209,7 +209,9 @@ With config file and script file, you can train ROAM models with following commo
 CUDA_VISIBLE_DEVICES=0 sh int_glioma_tumor_subtyping.sh
 ```
 
-
+**Results saving**
+The code will automatically save the best-performing model and evaluation metrics for each fold during the training process.
+The results will be saved in `*result_dir*/*task*/*exp_code*/*seed*`.
 
 
 
@@ -222,7 +224,7 @@ CUDA_VISIBLE_DEVICES=0 sh int_glioma_tumor_subtyping_test.sh
 #### 2.Cascade diagnosis
 
 <img src="./docs/cascade_diagnosis.jpg" width="800px" aligh="center">
-You can also use ROAM for cascode diagnosis. Take glioma diagnosis as an example, all you need to do is running the tasks for glioma detection, glioma subtyping and glioma grading sequentially. `predict_cascade.py` will automatically generate the test set data required for the subsequent tasks based on teh current prediction resutls.
+You can also use ROAM for cascode diagnosis. Take glioma diagnosis as an example, all you need to do is running the tasks for glioma detection, glioma subtyping and glioma grading sequentially. 'predict_cascade.py' will automatically generate the test set data required for the subsequent tasks based on teh current prediction resutls.
 
 Configure file is the same as the configure file in the training section. Here is an example of the script for cascade diagnosis:
 ```bash
