@@ -277,6 +277,7 @@ Then run the script to generate the complete diagnosis resutls in `./ROAM/script
 ```bash
 CUDA_VISIBLE_DEVICES=0 sh cascade_pred.sh
 ```
+We provide an example of the script for predicting the subtype of the slides: `./ROAM/scripts/cascade_pred_int_glioma_tumor_subtyping.sh`
 
 #### 3.Ablation experiments
 
