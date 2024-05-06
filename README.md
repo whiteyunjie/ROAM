@@ -12,11 +12,11 @@ We recommend that you use anaconda to configure ROAM’s dependency environment.
 
 Use the environment configuration file located in `./docs/environment.yaml` to create a conda environment:
 ```shell
-conda env create -n roam -f docs/environments.yaml
+conda env create -n roam -f docs/environment.yaml
 ```
 Activate the roam environment to run the training code:
 ```shell
-conda acivate roam
+conda activate roam
 ```
 If an error occurs when importing h5py, you can try uninstalling and then reinstalling the package.
 ```shell
