@@ -1,5 +1,6 @@
 # ROAM
-A weakly supervised computational pathology method for clinical-grade auxiliary diagnosis and molecular-morphological biomarker discovery of gliomas
+A transformer-based weakly supervised computational pathology method for clinical-grade diagnosis and molecular state revelation of gliomas
+
 
 <img src="./docs/ROAM.png" width="800px" aligh="center">
 
