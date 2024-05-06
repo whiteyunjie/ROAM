@@ -336,9 +336,15 @@ Here are some examples of visualization results.
 2. Add another 2 dependencies: spams(version 2.6.5.4) and torchsummary(version 1.5.1).  
 3. Update the command of WSI segmentation and patching.
 
-## 2024.3.13
+## 2024.03.13
 1. Add a description for the saving path of the training results in **training and test** section.
 2. Fix a bug where the feature paths during model prediction is inconsistent with the previously generated paths.
 3. Fix a potential bug in "predict_cascade.py" during prediction.
+
+## 2024.05.05
+1. Update the figure of framework
+2. Fix some 
+3. Fix a bug where the feature paths during model prediction is inconsistent with the previously generated paths.
+4. Fix a potential bug in "predict_cascade.py" during prediction.
 
 
