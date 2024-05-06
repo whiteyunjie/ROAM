@@ -343,8 +343,7 @@ Here are some examples of visualization results.
 
 ## 2024.05.05
 1. Update the figure of framework
-2. Fix some 
-3. Fix a bug where the feature paths during model prediction is inconsistent with the previously generated paths.
-4. Fix a potential bug in "predict_cascade.py" during prediction.
+2. Fix some typos.
+
 
 
