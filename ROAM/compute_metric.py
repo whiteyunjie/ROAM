@@ -22,6 +22,17 @@ def getmetric(cm,num_cls):
     precs = []
     recs = []
     f1scores = []
+    if num_cls == 2:
+        cid = 1
+        TP = cm[cid,cid]
+        #TN = tr-cm[cid,cid]
+        gt = cm[cid] #tp+fn
+        pred = cm[:,cid] #tp+fp
+
+        prec = TP/np.sum(pred)
+        rec = TP/np.sum(gt)
+        f1score = 2 * prec*rec/(prec+rec)
+        return prec,rec,f1score
     for cid in range(num_cls):
         TP = cm[cid,cid]
         #TN = tr-cm[cid,cid]
