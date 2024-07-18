@@ -1,5 +1,5 @@
 # ROAM
-A transformer-based weakly supervised computational pathology method for clinical-grade diagnosis and molecular state revelation of gliomas
+### A transformer-based weakly supervised computational pathology method for clinical-grade diagnosis and molecular state revelation of gliomas
 
 
 <img src="./docs/ROAM.png" width="800px" aligh="center">
@@ -346,4 +346,9 @@ Here are some examples of visualization results.
 2. Fix some typos.
 
 
+
+# Citation
+If you find our work helpful for your research, please consider citing our article:
+
+Jiang, R., Yin, X., Yang, P. et al. A transformer-based weakly supervised computational pathology method for clinical-grade diagnosis and molecular marker discovery of gliomas. Nat Mach Intell (2024). https://doi.org/10.1038/s42256-024-00868-w
 
