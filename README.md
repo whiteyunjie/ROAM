@@ -148,7 +148,7 @@ np.array([
       [test_label1,test_label2,...,test_labelk]
 ])
 ```
-We provide examples of splits in `./data_prepare/data_split/`
+We provide examples of splits in `./data_prepare/data_split/` and reference code in `./data_prepare/create_splits.ipynb`.
 
 
 ## Training ROAM models
@@ -345,7 +345,8 @@ Here are some examples of visualization results.
 1. Update the figure of framework
 2. Fix some typos.
 
-
+## 2024.12.11
+1. Uplode an example code for generating train, val splits for training.
 
 # Citation
 If you find our work helpful for your research, please consider citing our article:
