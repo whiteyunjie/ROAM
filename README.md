@@ -346,7 +346,7 @@ Here are some examples of visualization results.
 2. Fix some typos.
 
 ## 2024.12.11
-1. Uplode an example code for generating train, val splits for training.
+1. Upload an example code for generating train, val splits for training.
 
 # Citation
 If you find our work helpful for your research, please consider citing our article:
